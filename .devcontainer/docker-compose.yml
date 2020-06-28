@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+    discourse:
+        build:
+            dockerfile: Dockerfile
+            context: .
+            args: 
+                USERNAME: vscode
+                USER_UID: 1000
+                USER_GID: 1000
+        command: /bin/sh -c "while sleep 1000; do :; done"
+        volumes:
+            - ..:/workspace:cached
+    postgresql:
+        image: postgres:10
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: password
+        volumes:
+            - "dbdata:/var/lib/postgresql/data"
+
+volumes:
+    dbdata:
