@@ -23,8 +23,8 @@ USER $USER_UID:$USER_GID
 # see https://github.com/discourse/discourse/blob/master/docs/DEVELOPER-ADVANCED.md
 RUN  sudo apt-get -yqq install advancecomp curl debconf-utils expect gifsicle git git-core gnupg2 imagemagick jhead jpegoptim \
                                iproute2 less libcurl4-openssl-dev libffi-dev libgdbm-dev libjpeg-turbo-progs libncurses5-dev \
-                               libpcre3 libpcre3-dev libreadline6-dev libssl-dev libsqlite3-dev libxml2 libyaml-dev lsb-release \
-                               openssh-client openssl optipng pngcrush pngquant procps redis-server vim zlib1g-dev
+                               libpcre3 libpcre3-dev libpq-dev libreadline6-dev libssl-dev libsqlite3-dev libxml2 libyaml-dev lsb-release \
+                               openssh-client openssl optipng pngcrush pngquant postgresql-contrib procps redis-server vim zlib1g-dev
 
 # ruby
 RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv \
@@ -37,17 +37,6 @@ RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv \
     && ~/.rbenv/bin/rbenv global 2.6.2 \
     && gem install bundler debase mailcatcher rake ruby-debug-ide \
     && echo 'gem: --no-document' >> ~/.gemrc
-    
-# TODO psql service
-# Postgresql
-# RUN curl -sSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - \
-#     && sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt focal-pgdg main" > /etc/apt/sources.list.d/pgdg.list' \
-#     && sudo apt-get -yqq update \
-#     && sudo apt-get -yqq install postgresql-10 pgadmin4
-#     && sudo -u postgres -i \
-#     && createuser --superuser -Upostgres $USERNAME \
-#     && psql -c "ALTER USER $USERNAME WITH PASSWORD 'password';" \
-#     && exit \
 
 # node
 RUN git clone https://github.com/nodenv/nodenv.git ~/.nodenv \
