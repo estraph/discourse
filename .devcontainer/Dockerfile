@@ -24,7 +24,7 @@ USER $USER_UID:$USER_GID
 RUN  sudo apt-get -yqq install advancecomp curl debconf-utils expect gifsicle git git-core gnupg2 imagemagick jhead jpegoptim \
                                iproute2 less libcurl4-openssl-dev libffi-dev libgdbm-dev libjpeg-turbo-progs libncurses5-dev \
                                libpcre3 libpcre3-dev libpq-dev libreadline6-dev libssl-dev libsqlite3-dev libxml2 libyaml-dev lsb-release \
-                               openssh-client openssl optipng pngcrush pngquant postgresql-contrib procps redis-server vim zlib1g-dev
+                               openssh-client openssl optipng pngcrush pngquant procps redis-server vim zlib1g-dev
 
 # ruby
 RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv \

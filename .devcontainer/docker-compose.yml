@@ -9,15 +9,31 @@ services:
                 USER_UID: 1000
                 USER_GID: 1000
         command: /bin/sh -c "while sleep 1000; do :; done"
+        environment:
+            DISCOURSE_DB_HOST: discourse-db
+            DISCOURSE_DB_USERNAME: discourse
+            DISCOURSE_DB_PASSWORD: password
+            DISCOURSE_REDIS_HOST: discourse-cache
         volumes:
             - ..:/workspace:cached
-    postgresql:
+    discourse-db:
         image: postgres:10
         restart: always
         environment:
+            POSTGRES_USER: discourse
             POSTGRES_PASSWORD: password
+        expose:
+            - "5432"
         volumes:
             - "dbdata:/var/lib/postgresql/data"
+    discourse-cache:
+        image: "redis:alpine"
+        restart: always
+        expose:
+            - "6379"
+        volumes:
+            - "cachedata:/var/lib/redis"
 
 volumes:
     dbdata:
+    cachedata:

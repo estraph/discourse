@@ -2,6 +2,9 @@ development:
   prepared_statements: false
   adapter: postgresql
   database: <%= ENV['DISCOURSE_DEV_DB'] || 'discourse_development' %>
+  username: <%= ENV['DISCOURSE_DB_USERNAME' || 'discourse' ] %>
+  password: <%= ENV['DISCOURSE_DB_PASSWORD' || 'password' ] %>
+  host: <%= ENV['DISCOURSE_DB_HOST' || 'localhost' ] %>
   min_messages: warning
   pool: 5
   timeout: 5000
@@ -11,7 +14,7 @@ development:
     ### If you change this setting you will need to
     ###   - restart sidekiq if you change this setting
     ###   - rebake all to posts using: `RAILS_ENV=production bundle exec rake posts:rebake`
-    - "localhost"
+    - "discourse-db"
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -33,6 +36,9 @@ test:
   prepared_statements: false
   adapter: postgresql
   database: <%= test_db %>
+  username: <%= ENV['DISCOURSE_DB_USERNAME' || 'discourse' ] %>
+  password: <%= ENV['DISCOURSE_DB_PASSWORD' || 'password' ] %>
+  host: <%= ENV['DISCOURSE_DB_HOST' || 'localhost' ] %>
   min_messages: warning
   pool: 5
   timeout: 5000
