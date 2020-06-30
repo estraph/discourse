@@ -33,6 +33,14 @@ services:
             - "6379"
         volumes:
             - "cachedata:/var/lib/redis"
+    discourse-metrics:
+        image: "datadog/agent:7.19.2"
+        expose:
+            - "8125"
+        environment:
+            DD_API_KEY: "123123123"
+            DD_DOGSTATSD_NON_LOCAL_TRAFFIC: "true"
+            DD_LOG_LEVEL: "OFF"
 
 volumes:
     dbdata:

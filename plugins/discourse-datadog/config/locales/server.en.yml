@@ -1,0 +1,3 @@
+en:
+  site_settings:
+    discourse_datadog_enabled: "Enable DiscourseDatadog plugin"
